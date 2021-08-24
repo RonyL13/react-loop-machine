@@ -1,12 +1,12 @@
 import Pad from './Pad'
 
 
-const Pads = ({ pads, ontoggle }) => {
+const Pads = ({ pads, onToggle }) => {
 
     return (
         <div>
             {pads.map((pad) => (
-                <Pad key = {pad.id} pad={pad} ontoggle={ontoggle}/>
+                <Pad key = {pad.id} pad={pad} onToggle={onToggle}/>
             ))}
         </div>
     )

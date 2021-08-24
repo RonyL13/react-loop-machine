@@ -1,11 +1,11 @@
-// import PropTypes from 'prop-types'
 
 
-const Pad = ({ pad, ontoggle }) => {
+const Pad = ({ pad, onToggle }) => {
 
     return (
         <div className='pad-container'>
-            <button onClick={() => {ontoggle(pad.id)}} state={pad.on ? 'On' : 'Off'}>{pad.text}</button>
+            <button className="pad" status="Off" id={pad.id} onClick={() => {onToggle(pad)}}>{pad.text}</button>
+            <audio src={pad.src}></audio>
         </div>
     )
 }
