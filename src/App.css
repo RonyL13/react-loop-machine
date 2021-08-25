@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* The gallery of pads */
+.pads-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    height: 5rem;
+}
+/* Each individual pad's parent div */
+.pad-container {
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+    width: 100%;
+}
+/* Each individual pad */
+.pad {
+    border: outset;
+    width: 100%
+}
