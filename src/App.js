@@ -1,76 +1,78 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Button from './components/Button'
 import Pads from './components/Pads'
 import sound from './loops/120_future_funk_beats_25.mp3'
 import sound2 from './loops/120_stutter_breakbeats_16.mp3'
 import sound3 from './loops/Bass Warwick heavy funk groove on E 120 BPM.mp3'
+import sound4 from './loops/electric guitar coutry slide 120bpm - B.mp3'
+
 
 const App = () => {
-
-  const removeFromArray = (array, value) => {
-    let index = array.indexOf(value)
-    array.splice(index, 1)
-  }
-
-  const [pads, togglePad] = useState([
+  const [pads, setToggle] = useState([
     {
       id: 1,
       text: 'Future',
-      src: sound,
-      on: false
+      selected: false,
+      class: 'pad',
+      audio: new Audio(sound)
     },
     {
       id: 2,
       text: 'Stutter',
-      src: sound2,
-      on: false
+      selected: false,
+      class: 'pad',
+      audio: new Audio(sound2)
     },
     {
       id: 3,
       text: 'Warwick',
-      src: sound3,
-      on: false
+      selected: false,
+      class: 'pad',
+      audio: new Audio(sound3)
+    },
+    {
+      id: 4,
+      text: 'Country',
+      selected: false,
+      class: 'pad',
+      audio: new Audio(sound4)
     },
   ])
-  let toBePlayed = []; // This array will contain all files that are set to be played (selected pads)
-
-  // This function is preparing the tracks that will be played upon clicking "Start"
-  const toggle = (pad) => {
-    let selectedAudio = document.getElementById(pad.id).nextSibling; // Grabbing the clicked pad audio element
-
-    if (pad.on) {
-      pad.on = false
-      removeFromArray(toBePlayed, selectedAudio)
-      selectedAudio.pause();
-      selectedAudio.currentTime = 0;
-    } else {
-      pad.on = true
-      toBePlayed.push(selectedAudio)
+  useEffect(() => {
+    for (let i = 0; i < pads.length; i++) {
+        if(pads[i].selected === false) {
+          pads[i].audio.pause()
+          pads[i].audio.currentTime = 0;
+        }
     }
+  }, [pads])
 
-  }
-
-  // Start playing the loops
+  // // Start playing the loops
   const startPlaying = () => {
-    for (let i = 0; i < toBePlayed.length; i++) {
-      toBePlayed[i].addEventListener('ended', startPlaying)
-      toBePlayed[i].play()
+    for (let i = 0; i < pads.length; i++) {
+        if(pads[i].selected) {
+          pads[i].audio.addEventListener('ended', startPlaying)
+          pads[i].audio.play()
+        }
     }
   }
   // Stop playing the loops and reset the toggled switches
   const stopPlaying = () => {
-    for (let i = 0; i < toBePlayed.length; i++) {
-      toBePlayed[i].pause();
-      toBePlayed[i].currentTime = 0;
-    }
-    toBePlayed = [];
+      for (let i = 0; i < pads.length; i++) {
+        pads[i].audio.pause();
+        pads[i].audio.currentTime = 0;
+      }
   }
+  
   return (
     <div className="App">
-      <Button name={'Start'} action={startPlaying} />
-      <Button name={'Stop'} action={stopPlaying} />
-      <Pads pads={pads} onToggle={toggle} />
+      <div className="controllers">
+        <Button name={'Record'}/>
+        <Button name={'Start'} action={startPlaying} />
+        <Button name={'Stop'} action={stopPlaying} />
+      </div>
+      <Pads pads={pads}  setToggle={setToggle} />
     </div>
   );
 }

@@ -20,6 +20,15 @@
 }
 /* Each individual pad */
 .pad {
+    font-size: 20px;
     border: outset;
     width: 100%
 }
+
+.selectedPad {
+    font-size: 20px;
+    border: inset;
+    width: 100%;
+}
+
+
