@@ -1,8 +1,9 @@
 const button = ({name, action}) => {
     
+
     return (
         <div className="button-container">
-            <button onClick={action}>{name}</button>
+            <button className="button" onClick={action}>{name}</button>
         </div>
     )
 }

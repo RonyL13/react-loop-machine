@@ -17,7 +17,6 @@ const Pad = ({ pad, setToggle }) => {
                 return newState
             })
         }
-        
     }
     return (
         <div className='pad-container'>
