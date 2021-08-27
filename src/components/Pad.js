@@ -1,5 +1,3 @@
-
-
 const Pad = ({ pad, setToggle }) => {
     const updateState = () => {
         if (pad.selected) {

@@ -16,38 +16,8 @@ import sound9 from './loops/SilentStar_120_Em_OrganSynth.mp3'
 const App = () => {
   const [isRecording, setIsRecording] = useState(false)
   const [mediaRecorder, setMediaRecorder] = useState(null)
-  const [audioChunks, setAudioChunks] = useState([]);
   const [playRecordingButton, setPlayRecordingButton] = useState(false)
   const [recording, setRecording] = useState(null)
-  
-  const startRecording = () => {
-    setIsRecording(true);
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(stream => {
-        const mr = new MediaRecorder(stream)
-        mr.start()
-        mr.addEventListener("dataavailable", event => {
-          audioChunks.push(event.data)
-          // setAudioChunks(event.data);
-        });
-        setMediaRecorder(mr);
-        mr.addEventListener("stop", () => {
-          const audioBlob = new Blob(audioChunks);
-          const audioUrl = URL.createObjectURL(audioBlob);
-          const audio = new Audio(audioUrl);
-          setRecording(audio);
-          setPlayRecordingButton(true);
-        });
-      })
-  }
-  const playRecording = () => {
-    recording.play()
-  }
-  const stopRecording = () => {
-    setIsRecording(false)
-    mediaRecorder.stop();
-  }
-
   const [pads, setToggle] = useState([
     {
       id: 1,
@@ -113,7 +83,7 @@ const App = () => {
       audio: new Audio(sound9)
     },
   ])
-
+  
   // Stop pads from playing immediately upon unselect
   useEffect(() => {
     for (let i = 0; i < pads.length; i++) {
@@ -124,6 +94,34 @@ const App = () => {
     }
   }, [pads])
 
+  const startRecording = () => {
+    let audioChunks = [];
+    setIsRecording(true);
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        const mr = new MediaRecorder(stream)
+        mr.start()
+        mr.addEventListener("dataavailable", event => {
+          audioChunks.splice(0, 1, event.data)
+        });
+        setMediaRecorder(mr);
+        mr.addEventListener("stop", () => {
+          const audioBlob = new Blob(audioChunks);
+          const audioUrl = URL.createObjectURL(audioBlob);
+          const audio = new Audio(audioUrl);
+          setRecording(audio);
+          setPlayRecordingButton(true);
+        });
+      })
+  }
+  const playRecording = () => {
+    recording.play()
+  }
+  const stopRecording = () => {
+    setIsRecording(false)
+    mediaRecorder.stop();
+  }
+
   // // Start playing the loops
   const startPlaying = () => {
     for (let i = 0; i < pads.length; i++) {
@@ -133,12 +131,21 @@ const App = () => {
       }
     }
   }
-  // Stop playing the loops
+  // Stop playing all active loops
   const stopPlaying = () => {
     for (let i = 0; i < pads.length; i++) {
       pads[i].audio.pause();
       pads[i].audio.currentTime = 0;
     }
+    // Reset all pads
+    setToggle(prev => {
+      let newState = prev.slice();
+      for (let i = 0; i < prev.length; i++) {
+        newState[i].selected = false;
+        newState[i].class = 'pad'
+      }
+      return newState
+    })
   }
 
   return (
@@ -158,4 +165,3 @@ const App = () => {
 export default App;
 
 
-// Remove name from recorder state and rename it to isRecording
