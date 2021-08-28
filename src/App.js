@@ -123,6 +123,9 @@ const App = () => {
   const playRecording = () => {
     recording.play()
   }
+  const pauseRecording = () => {
+    recording.pause();
+  }
   const stopRecording = () => {
     try{
     setIsRecording(false)
@@ -169,6 +172,7 @@ const App = () => {
         <div className="recorder-and-play-container">
           <Recorder isRecording={isRecording} startRecording={startRecording} stopRecording={stopRecording} />
           <button className="play-recording-button" onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
+          <button className="pause-recording-button" onClick={pauseRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Pause' : ''}</button>
         </div>
         <div className="start-stop-container">
           <Button name={'Start'} action={startPlaying} />
@@ -176,7 +180,7 @@ const App = () => {
         </div>
       </div>
       <Pads pads={pads} setToggle={setToggle} />
-      <div className={loopTimer}></div>
+      <div className={loopTimer} />
     </div>
   );
 }

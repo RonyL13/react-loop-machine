@@ -59,13 +59,21 @@
 	}
 }
 
-.play-recording-button {
+.play-recording-button, .pause-recording-button{
     border: none;
     font-size: 20px;
     margin-top: 2%;
     width: 10%;
-    margin-left: 10%;
+    margin-left: 6%;
     cursor: pointer;
+    transition: 0.5s;
+}
+.play-recording-button:hover, .pause-recording-button:hover{
+    background-color: #00bcdd;
+}
+
+.pause-recording-button {
+    margin-left: 1.5%;
 }
 
 .start-stop-container {
@@ -237,6 +245,10 @@
      .button-container{
          width: 25%;
      }
+
+     .start-stop-container {
+         margin-top: 5%;
+     }
      .start-stop-container button:hover {
          width: 100%;
          height: 100%;
@@ -266,19 +278,27 @@
         padding: 5% 0 2.5% 0;
     }
 
-    .play-recording-button {
+    .play-recording-button, .pause-recording-button {
         background-color: white;
         height: 1.5rem;
-        margin-right: 5%;
+        margin-right: 3%;
         width: 25%;
     }
 
     .loop-timer {
-        margin-top: 10%;
+        margin-top: 7.5%;
+        width: 50%;
     }
 
     .loop-timer-active {
-        margin-top: 3%;
+        margin-top: 7.5%;
+        width: 50%;
         background-image: linear-gradient(90deg, #ff00ff 6%, lightgray 3%);
+        animation: slidebg 8s linear infinite;
     }
+    @keyframes slidebg {
+        to {
+          background-position:50vw;
+        }
+      } 
 }  
