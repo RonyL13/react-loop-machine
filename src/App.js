@@ -18,6 +18,7 @@ const App = () => {
   const [mediaRecorder, setMediaRecorder] = useState(null)
   const [playRecordingButton, setPlayRecordingButton] = useState(false)
   const [recording, setRecording] = useState(null)
+  const [loopTimer, setLoopTimer] = useState('loop-timer')
   const [pads, setToggle] = useState([
     {
       id: 1,
@@ -92,6 +93,10 @@ const App = () => {
         pads[i].audio.currentTime = 0;
       }
     }
+    if (!(pads.find(pad => pad.selected === true))) { // Stop the loop timer if no
+      setLoopTimer('loop-timer')
+    } 
+
   }, [pads])
 
   const startRecording = () => {
@@ -124,6 +129,7 @@ const App = () => {
 
   // // Start playing the loops
   const startPlaying = () => {
+    setLoopTimer('loop-timer-active')
     for (let i = 0; i < pads.length; i++) {
       if (pads[i].selected) {
         pads[i].audio.addEventListener('ended', startPlaying)
@@ -133,6 +139,7 @@ const App = () => {
   }
   // Stop playing all active loops
   const stopPlaying = () => {
+    setLoopTimer('loop-timer')
     for (let i = 0; i < pads.length; i++) {
       pads[i].audio.pause();
       pads[i].audio.currentTime = 0;
@@ -150,15 +157,19 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1 className="project-title">Loop Machine</h1>
       <div className="controllers">
-        <Recorder isRecording={isRecording} startRecording={startRecording} stopRecording={stopRecording} />
-        <button onClick={playRecording}>{playRecordingButton ? 'Play' : ''}</button>
+        <div className="recorder-container">
+          <Recorder isRecording={isRecording} startRecording={startRecording} stopRecording={stopRecording} />
+          <button onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
+        </div>
         <div className="start-stop-container">
           <Button name={'Start'} action={startPlaying} />
           <Button name={'Stop'} action={stopPlaying} />
         </div>
       </div>
       <Pads pads={pads} setToggle={setToggle} />
+      <div className={loopTimer}></div>
     </div>
   );
 }
