@@ -213,7 +213,6 @@
     width: 20%;
     height: 1rem;
     background-color: lightgray;
-    transition: 8s ease-in-out;
 }
 
 .loop-timer-active {
@@ -222,7 +221,6 @@
     width: 20%;
     height: 1rem;
     background-color: lightgray;
-    transition: 8s ease-in-out;
         background-image: linear-gradient(90deg, #ff00ff 3%, lightgray 1%);
         animation: slidebg 8s linear infinite;
 }
@@ -235,19 +233,33 @@
 
 
 @media (max-width: 800px) {
+
+     .button-container{
+         width: 25%;
+     }
+     .start-stop-container button:hover {
+         width: 100%;
+         height: 100%;
+     }
+
     .pads-container{
        width: 90%;
+       margin-top: 10%;
     }
+
     .pad {
         margin: 7.5%;
     }
+
     .selectedPad {
         margin: 7.5%;
     }
+
     .recorder-and-play-container {
         display: flex;
         align-items: center;
     }
+
     .recorder-container {
         width: 100%;
         margin-left: 1%;
@@ -255,16 +267,18 @@
     }
 
     .play-recording-button {
+        background-color: white;
         height: 1.5rem;
         margin-right: 5%;
         width: 25%;
     }
 
     .loop-timer {
-        margin-top: 3%;
+        margin-top: 10%;
     }
 
     .loop-timer-active {
         margin-top: 3%;
+        background-image: linear-gradient(90deg, #ff00ff 6%, lightgray 3%);
     }
 }  

@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# React Loop Machine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About The Project
 
-## Available Scripts
+A simple loop machine created using React. This app enables you to play audio files on a loop and mix and record them. Upon stopping the recording process you are able to playback the recording.
 
-In the project directory, you can run:
+### Built With
 
-### `npm start`
+React.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get a local copy of the app clone the repository
 
-### `npm test`
+https://github.com/RonyL13/react-loop-machine.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+**NOTE:**
+In order for the app to be able to record audio you must provide it with permission to access your microphone.
+If you choose not to allow microphone access you won't be able to use the recording feature.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After enabling microphone access just click any combination of the audio pads (9 squares) and hit the start button.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Selected pads will play their corresponding audio indefinetly until you stop them (individually or all).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Unselecting a pad while the audio is playing will cause that particular pad to stop playing.
+Selecting a pad while the audio is playing will start playing that pad's audio on the next loop start.
 
-### `npm run eject`
+Clicking the stop button will cause all pads to stop.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+to record audio click the "Start Recording" button.
+to stop recording audio click the "Stop Recording" button.
+Upon stopping a "Play" button will appear that when clicked will playback the recorded audio.

@@ -118,13 +118,20 @@ const App = () => {
           setPlayRecordingButton(true);
         });
       })
+    
   }
   const playRecording = () => {
     recording.play()
   }
   const stopRecording = () => {
+    try{
     setIsRecording(false)
     mediaRecorder.stop();
+    }
+    catch(err) {
+      console.log(err);
+      console.log(`An error occured: please make sure you're allowing the app to use your microphone`);
+    }
   }
 
   // // Start playing the loops
@@ -157,8 +164,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="project-title">Loop Machine</h1>
       <div className="controllers">
+      <h1 className="project-title">Loop Machine</h1>
         <div className="recorder-and-play-container">
           <Recorder isRecording={isRecording} startRecording={startRecording} stopRecording={stopRecording} />
           <button className="play-recording-button" onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
