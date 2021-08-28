@@ -7,9 +7,9 @@ const Recorder = ({ isRecording, startRecording, stopRecording }) => {
         }
     }
     return (
-        <div className="recorder-container">
-            <label htmlFor="recorder">Record:</label>
-            <button name="recorder" className="recorder" onClick={recordingHandler}>{isRecording ? "Switch Off" : "Switch On"}</button>
+        <div  className="recorder-container">
+            <label htmlFor="recorder">{isRecording ? "Recorder On" : "Recorder Off"}</label>
+            <button id="recorder" className={isRecording ? "Rec" : "notRec"} onClick={recordingHandler}></button>
         </div>
     )
 }

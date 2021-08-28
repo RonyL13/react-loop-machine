@@ -1,8 +1,6 @@
 import Pad from './Pad'
 
-
 const Pads = ({ pads, setToggle }) => {
-
     return (
         <div className='pads-container'>
             {pads.map((pad) => (

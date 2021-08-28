@@ -93,7 +93,7 @@ const App = () => {
         pads[i].audio.currentTime = 0;
       }
     }
-    if (!(pads.find(pad => pad.selected === true))) { // Stop the loop timer if no
+    if (!(pads.find(pad => pad.selected === true))) {
       setLoopTimer('loop-timer')
     } 
 
@@ -159,9 +159,9 @@ const App = () => {
     <div className="App">
       <h1 className="project-title">Loop Machine</h1>
       <div className="controllers">
-        <div className="recorder-container">
+        <div className="recorder-and-play-container">
           <Recorder isRecording={isRecording} startRecording={startRecording} stopRecording={stopRecording} />
-          <button onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
+          <button className ="play-recording-button" onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
         </div>
         <div className="start-stop-container">
           <Button name={'Start'} action={startPlaying} />
@@ -174,5 +174,3 @@ const App = () => {
   );
 }
 export default App;
-
-
