@@ -84,7 +84,7 @@ const App = () => {
       audio: new Audio(sound9)
     },
   ])
-  
+
   // Stop pads from playing immediately upon unselect
   useEffect(() => {
     for (let i = 0; i < pads.length; i++) {
@@ -95,7 +95,7 @@ const App = () => {
     }
     if (!(pads.find(pad => pad.selected === true))) {
       setLoopTimer('loop-timer')
-    } 
+    }
 
   }, [pads])
 
@@ -161,7 +161,7 @@ const App = () => {
       <div className="controllers">
         <div className="recorder-and-play-container">
           <Recorder isRecording={isRecording} startRecording={startRecording} stopRecording={stopRecording} />
-          <button className ="play-recording-button" onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
+          <button className="play-recording-button" onClick={playRecording} disabled={!playRecordingButton}>{playRecordingButton ? 'Play' : ''}</button>
         </div>
         <div className="start-stop-container">
           <Button name={'Start'} action={startPlaying} />

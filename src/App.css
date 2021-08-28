@@ -238,6 +238,12 @@
     .pads-container{
        width: 90%;
     }
+    .pad {
+        margin: 7.5%;
+    }
+    .selectedPad {
+        margin: 7.5%;
+    }
     .recorder-and-play-container {
         display: flex;
         align-items: center;
@@ -252,5 +258,13 @@
         height: 1.5rem;
         margin-right: 5%;
         width: 25%;
+    }
+
+    .loop-timer {
+        margin-top: 3%;
+    }
+
+    .loop-timer-active {
+        margin-top: 3%;
     }
 }  

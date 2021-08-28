@@ -1,4 +1,4 @@
-const button = ({name, action}) => {
+const button = ({ name, action }) => {
     return (
         <div className="button-container">
             <button className="button" onClick={action}>{name}</button>
