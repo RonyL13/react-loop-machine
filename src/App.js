@@ -139,6 +139,7 @@ const App = () => {
 
   // // Start playing the loops
   const startPlaying = () => {
+    if (loopTimer === 'loop-timer') {
     setLoopTimer('loop-timer-active')
     for (let i = 0; i < pads.length; i++) {
       if (pads[i].selected) {
@@ -146,6 +147,7 @@ const App = () => {
         pads[i].audio.play()
       }
     }
+  }
   }
   // Stop playing all active loops
   const stopPlaying = () => {
